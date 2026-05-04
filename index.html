@@ -19,6 +19,14 @@
             font-weight: normal;
             font-style: normal;
         }
+                /* Sets up the Monterio font for the social links */
+        @font-face {
+            font-family: 'Monterio';
+            /* Make sure this file name EXACTLY matches the file in your folder */
+            src: url('Nortune-Bold.ttf') format('truetype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
 
         /* Base Reset & Typography */
         * {
@@ -41,10 +49,11 @@
             color: #333;
         }
 
-        /* NEW: Class to force the original system font on specific elements */
+        /* Class to apply the Monterio font to specific elements */
         .default-font {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+            font-family: 'Monterio', sans-serif !important;
         }
+
 
         /* Responsive Container */
         .profile-container {
