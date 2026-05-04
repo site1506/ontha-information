@@ -206,6 +206,23 @@
         .icon-store { background-color: #fdf5f7;        
              width: 70px;  /* Change this number to make it wider */
              height: 70px; }
+                /* Makes the social media images smaller inside their boxes */
+        .icon-ig img, 
+        .icon-fb img {
+           width: 52px;  /* Make this number smaller to shrink the image */
+           height: 52px; /* Keep this matching the width */
+            object-fit: contain; /* Prevents the image from stretching */
+           border-radius: 6px; /* Adds a slight curve to the image edges, optional! */
+         }
+        .icon-ig {
+            background: white;
+            color: white;
+
+        }
+        .icon-fb {
+            background-color: white;
+            color: white;
+        }
         .icon-ig {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             color: white;
@@ -302,23 +319,22 @@
             <!-- Instagram Link -->
             <a href="https://www.instagram.com/ontha.store_/" target="_blank" class="link-card">
                 <div class="icon-box icon-ig">
-                    <i class="fab fa-instagram"></i>
+                    <img src="img/fb.jpeg" alt="Instagram Icon">
                 </div>
                 <!-- Applied the default-font class here -->
-                <div class="card-text default-font">Instagram</div>
+                <div class="card-text text-center default-font">Instagram</div>
                 <div class="arrow">→</div>
             </a>
 
             <!-- Facebook Link -->
             <a href="https://www.facebook.com/OnthaStore1505" target="_blank" class="link-card">
                 <div class="icon-box icon-fb">
-                    <i class="fab fa-facebook-f"></i>
+                    <img src="img/ig.jpeg" alt="Instagram Icon">
                 </div>
                 <!-- Applied the default-font class here -->
-                <div class="card-text default-font">Facebook</div>
+                <div class="card-text text-center default-font">Facebook</div>
                 <div class="arrow">→</div>
             </a>
-
         </div>
     </div>
 
