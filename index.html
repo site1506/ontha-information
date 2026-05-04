@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontha Profile</title>
+    <!-- FontAwesome for the social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Imports the Rustic Roadway font for the English text -->
+    <link href="https://fonts.cdnfonts.com/css/rustic-roadway-personal-use" rel="stylesheet">
+    
+    <style>
+        /* Sets up the Parastoo Swashes font for the Arabic text */
+        @font-face {
+            font-family: 'Parastoo Swashes';
+            /* IMPORTANT: Change 'ParastooSwashes.ttf' to match the exact file name of the font you downloaded */
+            src: url('Parastoo Swashes.otf') format('truetype'); 
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Base Reset & Typography */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* The browser applies Rustic Roadway to English, and falls back to Parastoo Swashes for Arabic */
+            font-family: 'Rustic Roadway - Personal use', 'Parastoo Swashes', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            
+            /* Added a soft gradient background that will show up nicely on laptops */
+            background: linear-gradient(135deg, #fdf5f7 0%, #f3a6c6 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Allows scrolling on shorter screens */
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* NEW: Class to force the original system font on specific elements */
+        .default-font {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+        }
+
+        /* Responsive Container */
+        .profile-container {
+            width: 100%;
+            max-width: 480px; /* Perfect width for readability on both devices */
+            background-color: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        /* LAPTOP/TABLET ADJUSTMENTS */
+        @media (min-width: 600px) {
+            body {
+                align-items: center; /* Centers the card vertically on big screens */
+            }
+            .profile-container {
+                min-height: auto; /* Removes full-height restriction */
+                margin: 40px 0;
+                border-radius: 24px; /* Rounds the outer edges */
+                overflow: hidden; /* Keeps the pink header cleanly inside the borders */
+            }
+        }
+
+        /* Header Background */
+        .header-bg {
+            background-color: #f3a6c6; 
+            height: 160px;
+            width: 100%;
+        }
+
+        /* Main Content Wrapper */
+        .content {
+            background-color: #ffffff;
+            border-radius: 24px 24px 0 0;
+            margin-top: -24px;
+            padding: 0 24px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            flex-grow: 1;
+        }
+
+        /* Profile Picture */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-top: -60px;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Text Styles */
+        .profile-name {
+            font-size: 38px; /* Slightly increased for readability with the new custom fonts */
+            font-weight: 700;
+            margin: 16px 0 8px;
+            color: #111;
+        }
+
+        .profile-bio {
+            font-size: 18px; /* Slightly increased for the Arabic custom font */
+            color: #666;
+            margin-bottom: 24px;
+            text-align: center;
+            direction: rtl; 
+        }
+        /* --- THE LETTER MERGE TRICK --- */
+        .overlap-group {
+            display: inline-block;
+            position: relative; /* This holds the floating 'a' inside its borders */
+        }
+
+        .floating-a {
+            position: absolute;
+            /* YOU MIGHT NEED TO ADJUST THESE TWO NUMBERS: */
+            left: -9px;    /* Change to 5px or -5px to move left/right */
+            bottom: 18px;  /* Change to 8px or 0px to move up/down */
+            
+            font-size: 32px; /* Slightly smaller to fit inside the curve */
+            color: #000000; /* Makes the 'a' pink. Change to #111 if you want it black */
+            z-index: 9; /* Puts the 'a' in front of the Arabic letter */
+        }
+        /* Moves the Arabic word up */
+        .arabic-word {
+             display: inline-block; /* This is required for 'transform' to work on text */
+             transform: translateY(-13px); /* The negative number moves it UP. Adjust this number! */
+         }
+        /* ------------------------------- */
+        /* Horizontal Divider */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: #f0f0f0;
+            margin-bottom: 24px;
+        }
+
+        /* Link Cards */
+        .link-card {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 16px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            border: 1px solid #f9f9f9;
+            transition: all 0.2s ease;
+        }
+
+        /* Hover effect for laptops */
+        .link-card:hover {
+            box-shadow: 0 6px 16px rgba(243, 166, 198, 0.2);
+            border-color: #f3a6c6;
+            transform: translateY(-2px);
+        }
+
+        .link-card:active {
+            transform: scale(0.98);
+        }
+
+        /* Icons Container */
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            font-size: 28px;
+            overflow: hidden;
+        }
+
+        .icon-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .icon-store { background-color: #fdf5f7; }
+        .icon-ig {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+        .icon-fb {
+            background-color: #1877F2;
+            color: white;
+        }
+
+        /* Card Text & Arrows */
+        .card-text {
+            flex-grow: 1;
+            font-size: 20px; /* Increased to make custom fonts pop */
+            font-weight: 500;
+            margin: 0 16px;
+        }
+
+        .text-center {
+            text-align: center;
+            direction: rtl; /* Keeps Arabic text properly formatted */
+        }
+
+        .arrow {
+            font-size: 20px;
+            color: #333;
+            width: 24px;
+            display: flex;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+
+        /* Arrow moves slightly on hover for laptops */
+        .link-card:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        /* Section Title */
+        .section-title {
+            width: 100%;
+            text-align: left;
+            font-size: 22px; /* Adjusted for the English custom font */
+            font-weight: 600;
+            margin: 10px 0 16px;
+            padding-left: 4px;
+        }
+        /* NEW: Class to make specific English text larger inside a mixed line */
+        .en-large {
+            font-size: 20px; /* Increases size specifically for 'Online Store' */
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <!-- Pink Header -->
+        <div class="header-bg"></div>
+
+        <!-- Main Content -->
+        <div class="content">
+            
+            <!-- Profile Picture -->
+            <div class="profile-pic">
+                <img src="img/ontha_logo.jpg" alt="Profile Logo">
+            </div>
+
+            <!-- Name and Bio -->
+          <!-- Name and Bio with Merged Letters -->
+            <h1 class="profile-name">
+                Ont
+                <span class="overlap-group">
+                    <span class="arabic-word">أنثى</span>
+                    <span class="floating-a">ha</span>
+                </span>
+            </h1>
+            <p class="profile-bio">تابعي " أنثى" عبر وسائل التواصل الاجتماعي</p>
+
+            <div class="divider"></div>
+
+            <!-- Main Store Link -->
+            <a href="https://ontha.flexdz.store/" target="_blank" class="link-card">
+                <div class="icon-box icon-store">
+                    <img src="img/ontha_logo.jpg" alt="Store Icon">
+                </div>
+                <div class="card-text text-center ">المتجر الإلكتروني / <span class="en-large">Online Store</span></div>
+                
+                <div class="arrow">→</div>
+            </a>
+
+            <!-- Social Media Section -->
+            <!-- Applied the default-font class here -->
+            <h2 class="section-title default-font">Find me on</h2>
+
+            <!-- Instagram Link -->
+            <a href="https://www.instagram.com/ontha.store_/" target="_blank" class="link-card">
+                <div class="icon-box icon-ig">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <!-- Applied the default-font class here -->
+                <div class="card-text default-font">Instagram</div>
+                <div class="arrow">→</div>
+            </a>
+
+            <!-- Facebook Link -->
+            <a href="https://www.facebook.com/OnthaStore1505" target="_blank" class="link-card">
+                <div class="icon-box icon-fb">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <!-- Applied the default-font class here -->
+                <div class="card-text default-font">Facebook</div>
+                <div class="arrow">→</div>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>
