@@ -55,11 +55,20 @@
         }
 
 
-        /* Responsive Container */
+/* Responsive Container - With new Image Background */
         .profile-container {
             width: 100%;
-            max-width: 480px; /* Perfect width for readability on both devices */
-            background-color: #ffffff;
+            max-width: 480px; 
+            
+            /* 1. Change this to your desired main background image! */
+            background-image: url('img/white.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+            
+            /* Remove the old white background color */
+            /* background-color: #ffffff; */
+
             min-height: 100vh;
             position: relative;
             display: flex;
@@ -82,14 +91,18 @@
 
         /* Header Background */
         .header-bg {
-            background-color: #f3a6c6; 
+/* Replace 'header_image.jpg' with your actual image file name! */
+            background-image: url('img/pink.jpg'); 
+            background-size: cover; /* Makes the image stretch to fill the box perfectly */
+            background-position: center; /* Keeps the image centered so the best part shows */
+            background-repeat: no-repeat; /* Prevents the image from tiling */
             height: 160px;
             width: 100%;
         }
 
         /* Main Content Wrapper */
         .content {
-            background-color: #ffffff;
+            background-color: transparent;
             border-radius: 24px 24px 0 0;
             margin-top: -24px;
             padding: 0 24px 40px;
